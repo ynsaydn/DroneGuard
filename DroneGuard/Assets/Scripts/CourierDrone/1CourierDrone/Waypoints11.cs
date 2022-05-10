@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPoints : MonoBehaviour
+public class Waypoints11 : MonoBehaviour
 {
     [Range(0f, 2f)]
     [SerializeField] private float waypointSize = 1f;
@@ -27,6 +27,19 @@ public class WayPoints : MonoBehaviour
 
     public Transform GetNextWaypoint(Transform currentWaypoint)
     {
-        return null; 
+        if (currentWaypoint == null)
+        {
+            return transform.GetChild(0);
+        }
+
+        if(currentWaypoint.GetSiblingIndex() < transform.childCount -1 )
+        {
+            return transform.GetChild(currentWaypoint.GetSiblingIndex()+ 1 );
+        }
+        else
+        {
+            //ilk pointe döndüren kısım
+            return transform.GetChild(0);
+        }
     }
 }
