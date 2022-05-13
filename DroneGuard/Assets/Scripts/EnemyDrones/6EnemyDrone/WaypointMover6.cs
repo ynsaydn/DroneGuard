@@ -27,10 +27,20 @@ public class WaypointMover6 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position,moveSpeed* Time.deltaTime);
-       if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold) 
-       {
+        if(Input.GetButtonDown("Jump"))
+        {
+            moveSpeed = 0.1f;
+        }
+        
+        if(Input.GetButtonUp("Jump"))
+        
+        {
+            moveSpeed = 5f;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position,moveSpeed* Time.deltaTime);
+        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold) 
+        {
            currentWaypoint = wayPoints.GetNextWaypoint(currentWaypoint);
-       }
+        }
     }
 }
